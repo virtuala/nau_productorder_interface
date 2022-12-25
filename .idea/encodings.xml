@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/src/main/webapp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/java_lib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/java_lib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/javaweb_lib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/javaweb_lib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/orderinfo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/productline/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/userinfo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/warehouse/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vendor/coreentity/src/main/java" charset="UTF-8" />
+  </component>
+</project>

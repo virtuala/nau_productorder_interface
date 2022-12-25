@@ -1,0 +1,18 @@
+{
+	"TableDir":"Cms",
+	"TableName":["warehousestock","warehousestockcont"],
+	"ColumnHead":["whst",""],
+	"Columns":[
+{"Index":"0","Name":"whstID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"whstNumCode","Comment":"库存编号","DbType":"String"}
+,{"Index":"0","Name":"whstWarehouseID","Comment":"仓库ID","DbType":"Integer"}
+,{"Index":"0","Name":"whstProductID","Comment":"商品品类ID","DbType":"Integer"}
+,{"Index":"0","Name":"whstCount","Comment":"库存数量","DbType":"Integer"}
+,{"Index":"0","Name":"whstCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"whstCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"whstModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"whstModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"TableDir":"Cms",
+	"TableName":["userrole","userrolecont"],
+	"ColumnHead":["uirt",""],
+	"Columns":[
+{"Index":"0","Name":"uirtID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"uirtName","Comment":"角色名","DbType":"String"}
+,{"Index":"0","Name":"uirtNumCode","Comment":"角色编号","DbType":"String"}
+,{"Index":"0","Name":"uirtType","Comment":"角色类型","DbType":"Integer"}
+,{"Index":"0","Name":"uirtCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"uirtCreateTime","Comment":"创建时间","DbType":"Integer"}
+
+
+	]
+}

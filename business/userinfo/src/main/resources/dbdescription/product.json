@@ -1,0 +1,19 @@
+{
+	"TableDir":"Cms",
+	"TableName":["product","productcont"],
+	"ColumnHead":["shst",""],
+	"Columns":[
+{"Index":"0","Name":"shstID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"shstName","Comment":"产品名称","DbType":"String"}
+,{"Index":"0","Name":"shstNumCode","Comment":"产品编号","DbType":"String"}
+,{"Index":"0","Name":"shstPrice","Comment":"售价","DbType":"Float"}
+,{"Index":"0","Name":"shstCost","Comment":"成本价","DbType":"Float"}
+,{"Index":"0","Name":"shstTimeStandard","Comment":"生产标准时间","DbType":"Float"}
+,{"Index":"0","Name":"shstCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"shstCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"shstModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"shstModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}

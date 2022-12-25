@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.orderinfo.dao.Orderinfo.OrderinfodetailDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Orderinfodetail" >
+		<id column="shsodtID" property="shsodtID" jdbcType="INTEGER" />
+		<result column="shsodtName" property="shsodtName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >shsodtID,shsodtName,shsodtParid,shsodtCreateBy,shsodtCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Orderinfodetail">
+		SELECT shsodtID,shsodtNumCode,shsodtState,shsodtOrderinfoID,shsodtProductID,shsodtProductlineID,shsodtCount,shsodtProductCount
+		FROM corenets_orderinfodetail AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Orderinfodetail">
+		SELECT shsodtID,shsodtNumCode,shsodtState,shsodtOrderinfoID,shsodtProductID,shsodtProductlineID,shsodtCount,shsodtProductCount
+		FROM corenets_orderinfodetail AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Orderinfodetail">
+		SELECT shsodtID,shsodtNumCode,shsodtState,shsodtOrderinfoID,shsodtProductID,shsodtProductlineID,shsodtCount,shsodtProductCount
+		FROM corenets_orderinfodetail AS A
+		WHERE 1=1 AND A.shsodtID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_orderinfodetail(shsodtNumCode,shsodtCreateTime,shsodtModifyTime
+		<if test="pPojo.shsodtID_isset==true">,shsodtID</if>
+		<if test="pPojo.shsodtState_isset==true">,shsodtState</if>
+		<if test="pPojo.shsodtOrderinfoID_isset==true">,shsodtOrderinfoID</if>
+		<if test="pPojo.shsodtProductID_isset==true">,shsodtProductID</if>
+		<if test="pPojo.shsodtProductlineID_isset==true">,shsodtProductlineID</if>
+		<if test="pPojo.shsodtCount_isset==true">,shsodtCount</if>
+		<if test="pPojo.shsodtProductCount_isset==true">,shsodtProductCount</if>
+		<if test="pPojo.shsodtCreateBy_isset==true">,shsodtCreateBy</if>
+		<if test="pPojo.shsodtModifyBy_isset==true">,shsodtModifyBy</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.shsodtID_isset==true">,#{pPojo.shsodtID}</if>
+		<if test="pPojo.shsodtState_isset==true">,#{pPojo.shsodtState}</if>
+		<if test="pPojo.shsodtOrderinfoID_isset==true">,#{pPojo.shsodtOrderinfoID}</if>
+		<if test="pPojo.shsodtProductID_isset==true">,#{pPojo.shsodtProductID}</if>
+		<if test="pPojo.shsodtProductlineID_isset==true">,#{pPojo.shsodtProductlineID}</if>
+		<if test="pPojo.shsodtCount_isset==true">,#{pPojo.shsodtCount}</if>
+		<if test="pPojo.shsodtProductCount_isset==true">,#{pPojo.shsodtProductCount}</if>
+		<if test="pPojo.shsodtCreateBy_isset==true">,#{pPojo.shsodtCreateBy}</if>
+		<if test="pPojo.shsodtModifyBy_isset==true">,#{pPojo.shsodtModifyBy}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_orderinfodetail AS A SET shsodtModifyTime=now()
+		<if test="pPojo.shsodtID_isset==true">,shsodtID=#{pPojo.shsodtID}</if>
+		<if test="pPojo.shsodtNumCode_isset==true">,shsodtNumCode=#{pPojo.shsodtNumCode}</if>
+		<if test="pPojo.shsodtState_isset==true">,shsodtState=#{pPojo.shsodtState}</if>
+		<if test="pPojo.shsodtOrderinfoID_isset==true">,shsodtOrderinfoID=#{pPojo.shsodtOrderinfoID}</if>
+		<if test="pPojo.shsodtProductID_isset==true">,shsodtProductID=#{pPojo.shsodtProductID}</if>
+		<if test="pPojo.shsodtProductlineID_isset==true">,shsodtProductlineID=#{pPojo.shsodtProductlineID}</if>
+		<if test="pPojo.shsodtCount_isset==true">,shsodtCount=#{pPojo.shsodtCount}</if>
+		<if test="pPojo.shsodtProductCount_isset==true">,shsodtProductCount=#{pPojo.shsodtProductCount}</if>
+		<if test="pPojo.shsodtCreateBy_isset==true">,shsodtCreateBy=#{pPojo.shsodtCreateBy}</if>
+		<if test="pPojo.shsodtModifyBy_isset==true">,shsodtModifyBy=#{pPojo.shsodtModifyBy}</if>
+
+		WHERE 1=1 AND A.shsodtID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_orderinfodetail SET A.shsodtModifyTime=now(),A.shsodtRecycle=1 WHERE 1=1 AND A.shsodtID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_orderinfodetail WHERE 1=1 AND shsodtID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

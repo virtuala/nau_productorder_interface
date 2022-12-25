@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/service/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/business/product/pom.xml" />
+        <option value="$PROJECT_DIR$/business/userinfo/pom.xml" />
+        <option value="$PROJECT_DIR$/business/orderinfo/pom.xml" />
+        <option value="$PROJECT_DIR$/business/warehouse/pom.xml" />
+        <option value="$PROJECT_DIR$/business/productline/pom.xml" />
+        <option value="$PROJECT_DIR$/vendor/corelib/pom.xml" />
+        <option value="$PROJECT_DIR$/vendor/coreentity/pom.xml" />
+        <option value="$PROJECT_DIR$/common/universal/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/javaweb_lib/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/java_lib/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/javaweb_lib/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/universal/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

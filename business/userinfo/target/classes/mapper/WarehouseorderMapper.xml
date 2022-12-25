@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.userinfo.dao.Userinfo.WarehouseorderDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Warehouseorder" >
+		<id column="whotID" property="whotID" jdbcType="INTEGER" />
+		<result column="whotName" property="whotName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >whotID,whotName,whotParid,whotCreateBy,whotCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Warehouseorder">
+		SELECT whotID,whotNumCode,whotType,whotWarehouseID,whotProductID,whotCount
+		FROM corenets_warehouseorder AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Warehouseorder">
+		SELECT whotID,whotNumCode,whotType,whotWarehouseID,whotProductID,whotCount
+		FROM corenets_warehouseorder AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Warehouseorder">
+		SELECT whotID,whotNumCode,whotType,whotWarehouseID,whotProductID,whotCount
+		FROM corenets_warehouseorder AS A
+		WHERE 1=1 AND A.whotID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+
+		INSERT INTO corenets_warehouseorder(whotNumCode,whotCreateTime,whotModifyTime
+		<if test="pPojo.whotID_isset==true">,whotID</if>
+		<if test="pPojo.whotNumCode_isset==true">,whotNumCode</if>
+		<if test="pPojo.whotType_isset==true">,whotType</if>
+		<if test="pPojo.whotWarehouseID_isset==true">,whotWarehouseID</if>
+		<if test="pPojo.whotProductID_isset==true">,whotProductID</if>
+		<if test="pPojo.whotCount_isset==true">,whotCount</if>
+		<if test="pPojo.whotCreateBy_isset==true">,whotCreateBy</if>
+		<if test="pPojo.whotCreateTime_isset==true">,whotCreateTime</if>
+		<if test="pPojo.whotModifyBy_isset==true">,whotModifyBy</if>
+		<if test="pPojo.whotModifyTime_isset==true">,whotModifyTime</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.whotID_isset==true">,#{pPojo.whotID}</if>
+		<if test="pPojo.whotNumCode_isset==true">,#{pPojo.whotNumCode}</if>
+		<if test="pPojo.whotType_isset==true">,#{pPojo.whotType}</if>
+		<if test="pPojo.whotWarehouseID_isset==true">,#{pPojo.whotWarehouseID}</if>
+		<if test="pPojo.whotProductID_isset==true">,#{pPojo.whotProductID}</if>
+		<if test="pPojo.whotCount_isset==true">,#{pPojo.whotCount}</if>
+		<if test="pPojo.whotCreateBy_isset==true">,#{pPojo.whotCreateBy}</if>
+		<if test="pPojo.whotCreateTime_isset==true">,#{pPojo.whotCreateTime}</if>
+		<if test="pPojo.whotModifyBy_isset==true">,#{pPojo.whotModifyBy}</if>
+		<if test="pPojo.whotModifyTime_isset==true">,#{pPojo.whotModifyTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+
+	<update id="modify">
+		UPDATE corenets_warehouseorder AS A SET whotModifyTime=now()
+		<if test="pPojo.whotID_isset==true">,whotID=#{pPojo.whotID}</if>
+		<if test="pPojo.whotNumCode_isset==true">,whotNumCode=#{pPojo.whotNumCode}</if>
+		<if test="pPojo.whotType_isset==true">,whotType=#{pPojo.whotType}</if>
+		<if test="pPojo.whotWarehouseID_isset==true">,whotWarehouseID=#{pPojo.whotWarehouseID}</if>
+		<if test="pPojo.whotProductID_isset==true">,whotProductID=#{pPojo.whotProductID}</if>
+		<if test="pPojo.whotCount_isset==true">,whotCount=#{pPojo.whotCount}</if>
+		<if test="pPojo.whotCreateBy_isset==true">,whotCreateBy=#{pPojo.whotCreateBy}</if>
+		<if test="pPojo.whotCreateTime_isset==true">,whotCreateTime=#{pPojo.whotCreateTime}</if>
+		<if test="pPojo.whotModifyBy_isset==true">,whotModifyBy=#{pPojo.whotModifyBy}</if>
+		<if test="pPojo.whotModifyTime_isset==true">,whotModifyTime=#{pPojo.whotModifyTime}</if>
+
+		WHERE 1=1 AND A.whotID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_warehouseorder SET A.whotModifyTime=now(),A.whotRecycle=1 WHERE 1=1 AND A.whotID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_warehouseorder WHERE 1=1 AND whotID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

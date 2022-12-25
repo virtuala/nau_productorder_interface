@@ -1,0 +1,16 @@
+{
+	"TableDir":"Cms",
+	"TableName":["warehouse","warehousecont"],
+	"ColumnHead":["wht",""],
+	"Columns":[
+{"Index":"0","Name":"whtID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"whtName","Comment":"仓库名称","DbType":"String"}
+,{"Index":"0","Name":"whtNumCode","Comment":"仓库编号","DbType":"String"}
+,{"Index":"0","Name":"whtCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"whtCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"whtModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"whtModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}

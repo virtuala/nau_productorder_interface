@@ -1,0 +1,20 @@
+
+# Nacos 配置
+spring:
+  cloud:
+    nacos: #Nacos配置
+      config:
+        file-extension: yml
+        server-addr: 42.236.82.5:8848 #服务器ip
+        namespace: 0438e24a-2cb0-4cc9-9885-ae8b404ba17b
+      discovery:
+        enabled: true
+        server-addr: 42.236.82.5:8848
+        service: ${spring.application.name}
+
+
+
+
+
+
+

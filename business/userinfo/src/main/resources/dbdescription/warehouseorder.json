@@ -1,0 +1,14 @@
+{
+	"TableDir":"Cms",
+	"TableName":["warehouseorder","warehouseordercont"],
+	"ColumnHead":["whot",""],
+	"Columns":[
+{"Index":"0","Name":"whotID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"whotNumCode","Comment":"库存编号","DbType":"String"}
+,{"Index":"0","Name":"whotType","Comment":"类型：0入库、1出库、2转库","DbType":"Integer"}
+,{"Index":"0","Name":"whotCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"whotCreateTime","Comment":"创建时间","DbType":"Integer"}
+
+
+	]
+}

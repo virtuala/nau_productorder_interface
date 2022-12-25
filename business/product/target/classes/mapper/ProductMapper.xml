@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.product.dao.Product.ProductDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Product" >
+		<id column="shstID" property="shstID" jdbcType="INTEGER" />
+		<result column="shstName" property="shstName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >shstID,shstName,shstParid,shstCreateBy,shstCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Product">
+		SELECT shstID,shstName,shstNumCode,shstPrice,shstCost,shstTimeStandard
+		FROM corenets_product AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Product">
+		SELECT shstID,shstName,shstNumCode,shstPrice,shstCost,shstTimeStandard
+		FROM corenets_product AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Product">
+		SELECT shstID,shstName,shstNumCode,shstPrice,shstCost,shstTimeStandard
+		FROM corenets_product AS A
+		WHERE 1=1 AND A.shstID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_product(shstNumCode,shstCreateTime,shstModifyTime
+		<if test="pPojo.shstID_isset==true">,shstID</if>
+		<if test="pPojo.shstName_isset==true">,shstName</if>
+		<if test="pPojo.shstPrice_isset==true">,shstPrice</if>
+		<if test="pPojo.shstCost_isset==true">,shstCost</if>
+		<if test="pPojo.shstTimeStandard_isset==true">,shstTimeStandard</if>
+		<if test="pPojo.shstCreateBy_isset==true">,shstCreateBy</if>
+		<if test="pPojo.shstModifyBy_isset==true">,shstModifyBy</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.shstID_isset==true">,#{pPojo.shstID}</if>
+		<if test="pPojo.shstName_isset==true">,#{pPojo.shstName}</if>
+		<if test="pPojo.shstPrice_isset==true">,#{pPojo.shstPrice}</if>
+		<if test="pPojo.shstCost_isset==true">,#{pPojo.shstCost}</if>
+		<if test="pPojo.shstTimeStandard_isset==true">,#{pPojo.shstTimeStandard}</if>
+		<if test="pPojo.shstCreateBy_isset==true">,#{pPojo.shstCreateBy}</if>
+		<if test="pPojo.shstModifyBy_isset==true">,#{pPojo.shstModifyBy}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_product AS A SET shstModifyTime=now()
+		<if test="pPojo.shstID_isset==true">,shstID=#{pPojo.shstID}</if>
+		<if test="pPojo.shstName_isset==true">,shstName=#{pPojo.shstName}</if>
+		<if test="pPojo.shstNumCode_isset==true">,shstNumCode=#{pPojo.shstNumCode}</if>
+		<if test="pPojo.shstPrice_isset==true">,shstPrice=#{pPojo.shstPrice}</if>
+		<if test="pPojo.shstCost_isset==true">,shstCost=#{pPojo.shstCost}</if>
+		<if test="pPojo.shstTimeStandard_isset==true">,shstTimeStandard=#{pPojo.shstTimeStandard}</if>
+		<if test="pPojo.shstCreateBy_isset==true">,shstCreateBy=#{pPojo.shstCreateBy}</if>
+		<if test="pPojo.shstModifyBy_isset==true">,shstModifyBy=#{pPojo.shstModifyBy}</if>
+
+		WHERE 1=1 AND A.shstID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_product SET A.shstModifyTime=now(),A.shstRecycle=1 WHERE 1=1 AND A.shstID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_product WHERE 1=1 AND shstID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+	<!-- #对于库存进行查询 -->
+	<select id="searchWithWarehouse" resultType="java.util.HashMap">
+		SELECT shstID,shstName,shstNumCode,shstPrice,shstCost,shstTimeStandard,"0" AS whstCount,"0" AS Count,"0" AS ProductCount,"0" AS ProductNeedDay
+		FROM corenets_product AS A
+		;
+	</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>

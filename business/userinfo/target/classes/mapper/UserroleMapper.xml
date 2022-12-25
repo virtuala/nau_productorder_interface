@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.userinfo.dao.Userinfo.UserroleDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Userrole" >
+		<id column="uirtID" property="uirtID" jdbcType="INTEGER" />
+		<result column="uirtName" property="uirtName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >uirtID,uirtName,uirtParid,uirtCreateBy,uirtCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Userrole">
+		SELECT uirtID,uirtName,uirtNumCode,uirtType,uirtPower
+		FROM corenets_userrole AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Userrole">
+		SELECT uirtID,uirtName,uirtNumCode,uirtType,uirtPower
+		FROM corenets_userrole AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Userrole">
+		SELECT uirtID,uirtName,uirtNumCode,uirtType,uirtPower
+		FROM corenets_userrole AS A
+		WHERE 1=1 AND A.uirtID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_userrole(uirtNumCode,uirtCreateTime,uirtModifyTime
+		<if test="pPojo.uirtID_isset==true">,uirtID</if>
+		<if test="pPojo.uirtName_isset==true">,uirtName</if>
+		<if test="pPojo.uirtNumCode_isset==true">,uirtNumCode</if>
+		<if test="pPojo.uirtType_isset==true">,uirtType</if>
+		<if test="pPojo.uirtCreateBy_isset==true">,uirtCreateBy</if>
+		<if test="pPojo.uirtCreateTime_isset==true">,uirtCreateTime</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.uirtID_isset==true">,#{pPojo.uirtID}</if>
+		<if test="pPojo.uirtName_isset==true">,#{pPojo.uirtName}</if>
+		<if test="pPojo.uirtNumCode_isset==true">,#{pPojo.uirtNumCode}</if>
+		<if test="pPojo.uirtType_isset==true">,#{pPojo.uirtType}</if>
+		<if test="pPojo.uirtCreateBy_isset==true">,#{pPojo.uirtCreateBy}</if>
+		<if test="pPojo.uirtCreateTime_isset==true">,#{pPojo.uirtCreateTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_userrole AS A SET uirtModifyTime=now()
+		<if test="pPojo.uirtID_isset==true">,uirtID=#{pPojo.uirtID}</if>
+		<if test="pPojo.uirtName_isset==true">,uirtName=#{pPojo.uirtName}</if>
+		<if test="pPojo.uirtNumCode_isset==true">,uirtNumCode=#{pPojo.uirtNumCode}</if>
+		<if test="pPojo.uirtType_isset==true">,uirtType=#{pPojo.uirtType}</if>
+		<if test="pPojo.uirtCreateBy_isset==true">,uirtCreateBy=#{pPojo.uirtCreateBy}</if>
+		<if test="pPojo.uirtCreateTime_isset==true">,uirtCreateTime=#{pPojo.uirtCreateTime}</if>
+
+		WHERE 1=1 AND A.uirtID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_userrole SET A.uirtModifyTime=now(),A.uirtRecycle=1 WHERE 1=1 AND A.uirtID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_userrole WHERE 1=1 AND uirtID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

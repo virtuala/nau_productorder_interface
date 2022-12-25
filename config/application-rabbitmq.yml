@@ -1,0 +1,17 @@
+
+# Rabbitmq
+spring.rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: 123123
+    #虚拟host 可以不设置,使用server默认host
+    #virtual-host: JCcccHost
+
+
+
+
+
+
+
+

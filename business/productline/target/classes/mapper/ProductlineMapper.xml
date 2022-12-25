@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.productline.dao.Productline.ProductlineDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Productline" >
+		<id column="pltID" property="pltID" jdbcType="INTEGER" />
+		<result column="pltName" property="pltName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >pltID,pltName,pltParid,pltCreateBy,pltCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Productline">
+		SELECT pltID,pltName,pltNumCode,pltProductivity
+		FROM corenets_productline AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Productline">
+		SELECT pltID,pltName,pltNumCode,pltProductivity
+		FROM corenets_productline AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Productline">
+		SELECT pltID,pltName,pltNumCode,pltProductivity
+		FROM corenets_productline AS A
+		WHERE 1=1 AND A.pltID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_productline(pltNumCode,pltCreateTime,pltModifyTime
+		<if test="pPojo.pltID_isset==true">,pltID</if>
+		<if test="pPojo.pltName_isset==true">,pltName</if>
+		<if test="pPojo.pltProductivity_isset==true">,pltProductivity</if>
+		<if test="pPojo.pltCreateBy_isset==true">,pltCreateBy</if>
+		<if test="pPojo.pltModifyBy_isset==true">,pltModifyBy</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.pltID_isset==true">,#{pPojo.pltID}</if>
+		<if test="pPojo.pltName_isset==true">,#{pPojo.pltName}</if>
+		<if test="pPojo.pltProductivity_isset==true">,#{pPojo.pltProductivity}</if>
+		<if test="pPojo.pltCreateBy_isset==true">,#{pPojo.pltCreateBy}</if>
+		<if test="pPojo.pltModifyBy_isset==true">,#{pPojo.pltModifyBy}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_productline AS A SET pltModifyTime=now()
+		<if test="pPojo.pltID_isset==true">,pltID=#{pPojo.pltID}</if>
+		<if test="pPojo.pltName_isset==true">,pltName=#{pPojo.pltName}</if>
+		<if test="pPojo.pltNumCode_isset==true">,pltNumCode=#{pPojo.pltNumCode}</if>
+		<if test="pPojo.pltProductivity_isset==true">,pltProductivity=#{pPojo.pltProductivity}</if>
+		<if test="pPojo.pltCreateBy_isset==true">,pltCreateBy=#{pPojo.pltCreateBy}</if>
+		<if test="pPojo.pltModifyBy_isset==true">,pltModifyBy=#{pPojo.pltModifyBy}</if>
+
+		WHERE 1=1 AND A.pltID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_productline SET A.pltModifyTime=now(),A.pltRecycle=1 WHERE 1=1 AND A.pltID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_productline WHERE 1=1 AND pltID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+	<!-- #对于生产单据进行查询 -->
+	<select id="searchWithProductlineorderdetail" resultType="java.util.HashMap">
+		SELECT pltID,pltName,pltNumCode,pltProductivity,"" AS LastEndTime,"0" AS ProductCount,"0" AS ProductNeedDay
+		FROM corenets_productline AS A
+		;
+	</select>
+	<select id="searchById" resultType="java.util.HashMap">
+		SELECT * FROM corenets_productline AS A WHERE 1=1 AND A.pltID=#{pId};
+	</select>
+
+
+
+
+
+
+
+
+</mapper>

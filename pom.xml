@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.nets.productorder</groupId>
+    <artifactId>productorder</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>service/gateway</module>
+        <module>business/userinfo</module>
+        <module>business/product</module>
+        <module>business/warehouse</module>
+        <module>business/productline</module>
+        <module>business/orderinfo</module>
+        <module>vendor/corelib</module>
+        <module>vendor/coreentity</module>
+        <module>common/universal</module>
+    </modules>
+    <name>productorder</name>
+    <description>productorder</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <spring-cloud-alibaba.version>0.2.2.RELEASE</spring-cloud-alibaba.version>
+        <netflix-ribbon.version>2.1.0.RELEASE</netflix-ribbon.version> <!-- 负载均衡 -->
+        <sentinel.version>1.7.0</sentinel.version> <!-- 限流降级 -->
+        <openfeign.version>2.2.0.RELEASE</openfeign.version> <!-- openfeign 远程调用 -->
+
+        <shiro.version>1.8.0</shiro.version> <!-- shiro -->
+        <jwt.version>3.2.0</jwt.version> <!-- jwt -->
+
+        <thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
+        <druid.version>1.2.8</druid.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
+        <pagehelper.boot.version>1.4.0</pagehelper.boot.version>
+        <fastjson.version>1.2.79</fastjson.version>
+        <oshi.version>5.8.6</oshi.version>
+        <jna.version>5.10.0</jna.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <poi.version>4.1.2</poi.version>
+        <velocity.version>2.3</velocity.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+        <mvn.resource.plugin.version>3.1.0</mvn.resource.plugin.version>
+
+        <lombok.version>1.18.10</lombok.version>
+        <druid.version>1.1.20</druid.version> <!-- jdbcsharding分库分表 -->
+        <mysql-connector.version>8.0.18</mysql-connector.version> <!-- mysql -->
+        <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <mybatis-plus.version>3.3.1</mybatis-plus.version>
+        <hbase.version>1.4.9</hbase.version>
+
+        <jetcache.version>2.5.14</jetcache.version>
+        <commons-lang.version>3.9</commons-lang.version>
+        <gateway-core.version>2.1.0.RELEASE</gateway-core.version>
+        <jobs.version>2.1.0</jobs.version>
+
+        <guava.version>28.1-jre</guava.version> <!-- 注册中心引用包 -->
+
+        <jedis.version>2.9.0</jedis.version> <!-- redis客户端 jedis-->
+        <redis-reactive.version>2.1.3.RELEASE</redis-reactive.version> <!-- redis客户端 jedis-->
+
+        <seata.version>1.4.2</seata.version> <!-- seata分布式事务 -->
+        <dynamic-datasource.version>3.2.0</dynamic-datasource.version> <!-- 动态数据源 -->
+
+        <drools.version>7.47.0.Final</drools.version> <!-- drools规则引擎 -->
+
+        <jdbcsharding.version>4.1.1</jdbcsharding.version> <!-- jdbcsharding分库分表 -->
+
+        <hutool.version>5.2.5</hutool.version>
+        <aliyun-sdk.version>4.5.1</aliyun-sdk.version>
+        <oss.version>3.8.1</oss.version>
+
+        <dockerfile.path>.</dockerfile.path>
+        <dockerfile.jar.path>.</dockerfile.jar.path>
+
+        <!-- #自定义库 -->
+        <java_lib.version>1.0-SNAPSHOT</java_lib.version>
+        <javaweb_lib.version>1.0-SNAPSHOT</javaweb_lib.version>
+
+        <productorder_coreentity.version>1.0-SNAPSHOT</productorder_coreentity.version>
+
+
+    </properties>
+
+    <dependencies>
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        -->
+
+        <!-- SpringBoot的依赖配置-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        -->
+
+        <!-- 获取系统信息 -->
+        <!--
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>${oshi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>${jna.version}</version>
+        </dependency>
+        -->
+
+        <!-- io常用工具类 -->
+        <!--
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        -->
+
+        <!-- 阿里JSON解析器 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!-- 热加载 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--测试框架-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        -->
+
+        <!-- Shiro核心框架 、 Shiro使用Spring框架 、 Shiro使用EhCache缓存框架 -->
+        <!--
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        -->
+
+        <!-- thymeleaf模板引擎和shiro框架的整合 -->
+        <!--
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>${thymeleaf.extras.shiro.version}</version>
+        </dependency>
+        -->
+
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <!--
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>${bitwalker.version}</version>
+        </dependency>
+        -->
+
+        <!-- Mysql驱动包 、 阿里数据库连接池（可/必需与jdbcsharding可一起使用） 、 SpringBoot集成mybatis框架 、 使用 lombok 简化 Java 代码 -->
+        <!--
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        -->
+
+        <!-- 弃用：这个不可与jdbcsharding不可一起使用 -->
+        <!--
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        -->
+
+        <!--jdbcsharding分库分表工具-->
+        <!--
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>${jdbcsharding.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-core-common</artifactId>
+            <version>${jdbcsharding.version}</version>
+        </dependency>
+        -->
+
+        <!-- pagehelper 分页插件 -->
+        <!--
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.boot.version}</version>
+        </dependency>
+        -->
+
+        <!-- HBASE客户端：https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+        <!--
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+        -->
+
+        <!-- 注册中心引用包 https://mvnrepository.com/artifact/com.google.guava/guava 、 注册中心 、 配置中心 -->
+        <!--
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
+        </dependency>
+        -->
+
+        <!-- gateway ribbon 负载均衡 - nacos 与 ribbon负载均衡 不能同时使用 -->
+        <!--
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <version>${netflix-ribbon.version}</version>
+        </dependency>
+        -->
+
+        <!--Feign服务调用-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${openfeign.version}</version>
+        </dependency>
+        -->
+
+        <!-- sentinel 限流降级 -->
+        <!--
+        #整体性更好，只用引用一个包，而且可以只在.yml配置文件中配置即可，主要配置项为：sentinel.transport.dashboard，而且所有的配置不需要在代码里编写，在dashboard中配置即可
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        #需要引用三个包，不需要在.yml文件中配置，但是需要在 VM options 中手动配置以下内容
+        #还需要在启动配置的 VM options 选项中配置以下参数，每个参数都要配置，Dproject.name为在控制台显示的名称、Dcsp.sentinel.dashboard.server与控制台的端口一致，Dcsp.sentinel.api.port默认为8719即可。
+        #-Dproject.name=sentinel-ProductApplication -Dcsp.sentinel.dashboard.server=127.0.0.1:9010 -Dcsp.sentinel.api.port=8719
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-annotation-aspectj</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+        -->
+
+        <!--日志跟踪-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        -->
+
+        <!-- seata-spring-boot-starter 分布式事务 -->
+        <!--
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+            <version>${seata.version}</version>
+        </dependency>
+        -->
+
+        <!-- dynamic-datasource-spring-boot-starter 动态数据源，支持多数据源，，一个项目多个库的场景。 -->
+        <!--
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>${dynamic-datasource.version}</version>
+        </dependency>
+        -->
+
+        <!--drools规则引擎-->
+        <!--
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-core</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-persistence-jpa</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        -->
+
+        <!--消息总线-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+        -->
+
+        <!-- redis客户端 jedis 、 spring-data-redis -->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        -->
+
+        <!-- rabbitmq -->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        -->
+
+        <!-- 验证码 -->
+        <!--
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+        -->
+
+        <!-- 文件上传工具类 -->
+        <!--
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons.fileupload.version}</version>
+        </dependency>
+        -->
+
+        <!-- excel工具 -->
+        <!--
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        -->
+
+        <!-- velocity代码生成使用模板 -->
+        <!--
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+        -->
+
+        <!--自省和监控的集成功能-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        -->
+
+        <!-- pdf免费版 -->
+        <!--
+        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.pdf.free</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        -->
+
+        <!-- #自定义库 -->
+        <!--
+        <dependency>
+            <groupId>com.nets.netsjframe.corelib</groupId>
+            <artifactId>corelib</artifactId>
+            <version>${netsjframe_corelib.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        -->
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Spring Cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- #依赖版本管理 -->
+    <!--
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    -->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- #编译打包插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- #编译打包插件 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

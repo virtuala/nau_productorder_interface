@@ -1,0 +1,15 @@
+{
+	"TableDir":"Cms",
+	"TableName":["orderinfo","orderinfocont"],
+	"ColumnHead":["shsot",""],
+	"Columns":[
+{"Index":"0","Name":"shsotID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"shsotNumCode","Comment":"订单号","DbType":"String"}
+,{"Index":"0","Name":"shsotCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"shsotCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"shsotModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"shsotModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}

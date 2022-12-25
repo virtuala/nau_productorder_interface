@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.userinfo.dao.Userinfo.ProductlineorderdetailDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Productlineorderdetail" >
+		<id column="plodtID" property="plodtID" jdbcType="INTEGER" />
+		<result column="plodtName" property="plodtName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >plodtID,plodtName,plodtParid,plodtCreateBy,plodtCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Productlineorderdetail">
+		SELECT plodtID,plodtNumCode,plodtProductlineID,plodtOrderdetailID,plodtProductID,plodtCount,plodtStatus,plodtCompleteTime
+		FROM corenets_productlineorderdetail AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Productlineorderdetail">
+		SELECT plodtID,plodtNumCode,plodtProductlineID,plodtOrderdetailID,plodtProductID,plodtCount,plodtStatus,plodtCompleteTime
+		FROM corenets_productlineorderdetail AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Productlineorderdetail">
+		SELECT plodtID,plodtNumCode,plodtProductlineID,plodtOrderdetailID,plodtProductID,plodtCount,plodtStatus,plodtCompleteTime
+		FROM corenets_productlineorderdetail AS A
+		WHERE 1=1 AND A.plodtID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_productlineorderdetail(plodtNumCode,plodtCreateTime,plodtModifyTime
+		<if test="pPojo.plodtID_isset==true">,plodtID</if>
+		<if test="pPojo.plodtNumCode_isset==true">,plodtNumCode</if>
+		<if test="pPojo.plodtProductID_isset==true">,plodtProductID</if>
+		<if test="pPojo.plodtProductlineID_isset==true">,plodtProductlineID</if>
+		<if test="pPojo.plodtOrderdetailID_isset==true">,plodtOrderdetailID</if>
+		<if test="pPojo.plodtStatus_isset==true">,plodtStatus</if>
+		<if test="pPojo.plodtCount_isset==true">,plodtCount</if>
+		<if test="pPojo.plodtCompleteTime_isset==true">,plodtCompleteTime</if>
+		<if test="pPojo.plodtCreateBy_isset==true">,plodtCreateBy</if>
+		<if test="pPojo.plodtCreateTime_isset==true">,plodtCreateTime</if>
+		<if test="pPojo.plodtModifyBy_isset==true">,plodtModifyBy</if>
+		<if test="pPojo.plodtModifyTime_isset==true">,plodtModifyTime</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.plodtID_isset==true">,#{pPojo.plodtID}</if>
+		<if test="pPojo.plodtNumCode_isset==true">,#{pPojo.plodtNumCode}</if>
+		<if test="pPojo.plodtProductID_isset==true">,#{pPojo.plodtProductID}</if>
+		<if test="pPojo.plodtProductlineID_isset==true">,#{pPojo.plodtProductlineID}</if>
+		<if test="pPojo.plodtOrderdetailID_isset==true">,#{pPojo.plodtOrderdetailID}</if>
+		<if test="pPojo.plodtStatus_isset==true">,#{pPojo.plodtStatus}</if>
+		<if test="pPojo.plodtCount_isset==true">,#{pPojo.plodtCount}</if>
+		<if test="pPojo.plodtCompleteTime_isset==true">,#{pPojo.plodtCompleteTime}</if>
+		<if test="pPojo.plodtCreateBy_isset==true">,#{pPojo.plodtCreateBy}</if>
+		<if test="pPojo.plodtCreateTime_isset==true">,#{pPojo.plodtCreateTime}</if>
+		<if test="pPojo.plodtModifyBy_isset==true">,#{pPojo.plodtModifyBy}</if>
+		<if test="pPojo.plodtModifyTime_isset==true">,#{pPojo.plodtModifyTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_productlineorderdetail AS A SET plodtModifyTime=now()
+		<if test="pPojo.plodtID_isset==true">,plodtID=#{pPojo.plodtID}</if>
+		<if test="pPojo.plodtNumCode_isset==true">,plodtNumCode=#{pPojo.plodtNumCode}</if>
+		<if test="pPojo.plodtProductID_isset==true">,plodtProductID=#{pPojo.plodtProductID}</if>
+		<if test="pPojo.plodtProductlineID_isset==true">,plodtProductlineID=#{pPojo.plodtProductlineID}</if>
+		<if test="pPojo.plodtOrderdetailID_isset==true">,plodtOrderdetailID=#{pPojo.plodtOrderdetailID}</if>
+		<if test="pPojo.plodtStatus_isset==true">,plodtStatus=#{pPojo.plodtStatus}</if>
+		<if test="pPojo.plodtCount_isset==true">,plodtCount=#{pPojo.plodtCount}</if>
+		<if test="pPojo.plodtCompleteTime_isset==true">,plodtCompleteTime=#{pPojo.plodtCompleteTime}</if>
+		<if test="pPojo.plodtCreateBy_isset==true">,plodtCreateBy=#{pPojo.plodtCreateBy}</if>
+		<if test="pPojo.plodtCreateTime_isset==true">,plodtCreateTime=#{pPojo.plodtCreateTime}</if>
+		<if test="pPojo.plodtModifyBy_isset==true">,plodtModifyBy=#{pPojo.plodtModifyBy}</if>
+		<if test="pPojo.plodtModifyTime_isset==true">,plodtModifyTime=#{pPojo.plodtModifyTime}</if>
+
+		WHERE 1=1 AND A.plodtID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_productlineorderdetail SET A.plodtModifyTime=now(),A.plodtRecycle=1 WHERE 1=1 AND A.plodtID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_productlineorderdetail WHERE 1=1 AND plodtID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+	<select id="searchLastComplete" resultType="com.nets.productorder.coreentity.entity.Productlineorderdetail">
+		SELECT plodtID,plodtCompleteTime
+		FROM corenets_productlineorderdetail AS A
+		WHERE 1=1 AND A.plodtProductlineID=#{pProductlineID}
+		ORDER BY A.plodtCompleteTime DESC LIMIT 0,1
+		;
+	</select>
+
+
+
+
+
+
+
+
+
+</mapper>

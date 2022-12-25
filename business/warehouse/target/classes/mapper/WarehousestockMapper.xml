@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.warehouse.dao.Warehouse.WarehousestockDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Warehousestock" >
+		<id column="whstID" property="whstID" jdbcType="INTEGER" />
+		<result column="whstName" property="whstName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >whstID,whstName,whstParid,whstCreateBy,whstCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Warehousestock">
+		SELECT whstID,whstNumCode,whstWarehouseID,whstProductID,whstCount
+		FROM corenets_warehousestock AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Warehousestock">
+		SELECT whstID,whstNumCode,whstWarehouseID,whstProductID,whstCount
+		FROM corenets_warehousestock AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Warehousestock">
+		SELECT whstID,whstNumCode,whstWarehouseID,whstProductID,whstCount
+		FROM corenets_warehousestock AS A
+		WHERE 1=1 AND A.whstID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_warehousestock(whstNumCode,whstCreateTime,whstModifyTime
+		<if test="pPojo.whstID_isset==true">,whstID</if>
+		<if test="pPojo.whstWarehouseID_isset==true">,whstWarehouseID</if>
+		<if test="pPojo.whstProductID_isset==true">,whstProductID</if>
+		<if test="pPojo.whstCount_isset==true">,whstCount</if>
+		<if test="pPojo.whstCreateBy_isset==true">,whstCreateBy</if>
+		<if test="pPojo.whstModifyBy_isset==true">,whstModifyBy</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.whstID_isset==true">,#{pPojo.whstID}</if>
+		<if test="pPojo.whstWarehouseID_isset==true">,#{pPojo.whstWarehouseID}</if>
+		<if test="pPojo.whstProductID_isset==true">,#{pPojo.whstProductID}</if>
+		<if test="pPojo.whstCount_isset==true">,#{pPojo.whstCount}</if>
+		<if test="pPojo.whstCreateBy_isset==true">,#{pPojo.whstCreateBy}</if>
+		<if test="pPojo.whstModifyBy_isset==true">,#{pPojo.whstModifyBy}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_warehousestock AS A SET whstModifyTime=now()
+		<if test="pPojo.whstID_isset==true">,whstID=#{pPojo.whstID}</if>
+		<if test="pPojo.whstNumCode_isset==true">,whstNumCode=#{pPojo.whstNumCode}</if>
+		<if test="pPojo.whstWarehouseID_isset==true">,whstWarehouseID=#{pPojo.whstWarehouseID}</if>
+		<if test="pPojo.whstProductID_isset==true">,whstProductID=#{pPojo.whstProductID}</if>
+		<if test="pPojo.whstCount_isset==true">,whstCount=#{pPojo.whstCount}</if>
+		<if test="pPojo.whstCreateBy_isset==true">,whstCreateBy=#{pPojo.whstCreateBy}</if>
+		<if test="pPojo.whstModifyBy_isset==true">,whstModifyBy=#{pPojo.whstModifyBy}</if>
+
+		WHERE 1=1 AND A.whstID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_warehousestock SET A.whstModifyTime=now(),A.whstRecycle=1 WHERE 1=1 AND A.whstID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_warehousestock WHERE 1=1 AND whstID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+	<select id="searchCount" resultType="java.util.HashMap">
+		SELECT SUM(A.whstCount) AS ACount
+		FROM corenets_warehousestock AS A
+		WHERE 1=1 AND A.whstProductID=#{pProductID}
+		;
+	</select>
+	<select id="searchByProductIDWarehouseID" resultType="java.util.HashMap">
+		SELECT * FROM corenets_warehousestock AS A WHERE 1=1 AND A.whstProductID=#{pProductID} AND A.whstWarehouseID=#{pWarehouseID};
+	</select>
+	<select id="searchByProductID" resultType="java.util.HashMap">
+		SELECT * FROM corenets_warehousestock AS A WHERE 1=1 AND A.whstProductID=#{pProductID};
+	</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>

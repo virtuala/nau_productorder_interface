@@ -1,0 +1,16 @@
+{
+	"TableDir":"Cms",
+	"TableName":["warehouseorderdetail","warehouseorderdetailcont"],
+	"ColumnHead":["whodet",""],
+	"Columns":[
+{"Index":"0","Name":"whodetID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"whodetNumCode","Comment":"库存编号","DbType":"String"}
+,{"Index":"0","Name":"whodetWarehouseorderID","Comment":"所属调库单","DbType":"Integer"}
+,{"Index":"0","Name":"whodetWarehousedetailID","Comment":"库存ID","DbType":"Integer"}
+,{"Index":"0","Name":"whodetCount","Comment":"库存数量","DbType":"Integer"}
+,{"Index":"0","Name":"whodetCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"whodetCreateTime","Comment":"创建时间","DbType":"Integer"}
+
+
+	]
+}

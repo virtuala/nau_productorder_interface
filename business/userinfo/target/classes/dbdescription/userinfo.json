@@ -1,0 +1,18 @@
+{
+	"TableDir":"Cms",
+	"TableName":["userinfo","userinfocont"],
+	"ColumnHead":["uit",""],
+	"Columns":[
+{"Index":"0","Name":"uitID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"uitName","Comment":"用户名","DbType":"String"}
+,{"Index":"0","Name":"uitNumCode","Comment":"用户编号","DbType":"String"}
+,{"Index":"0","Name":"uitUserrole","Comment":"用户角色","DbType":"Integer"}
+,{"Index":"0","Name":"uitPxd","Comment":"密码","DbType":"String"}
+,{"Index":"0","Name":"uitMobile","Comment":"手机号","DbType":"String"}
+,{"Index":"0","Name":"uitEmail","Comment":"邮箱","DbType":"String"}
+,{"Index":"0","Name":"uitCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"uitCreateTime","Comment":"创建时间","DbType":"Integer"}
+
+
+	]
+}

@@ -1,0 +1,33 @@
+
+seata:
+  application-id: springboot-seata
+  #  enable-auto-data-source-proxy: false
+  config:
+    type: file
+  registry:
+    type: file
+  #    nacos:
+  #      application: seata-server
+  #      cluster: default
+  #      group: SEATA_GROUP
+  #      server-addr: 127.0.0.1:8801,127.0.0.1:8802,127.0.0.1:8803 #192.168.172.128:8848
+  #      namespace: le_zi_jie
+  #    type: nacos
+  #  service:
+  #    vgroup-mapping:
+  #      springboot-seata-group: default
+  service:
+    grouplist:
+      default: 192.168.163.138:8091
+    vgroup-mapping:
+      springboot-seata-group: default
+  # seata 事务组编号 用于TC集群名
+  tx-service-group: springboot-seata-group
+
+
+
+
+
+
+
+

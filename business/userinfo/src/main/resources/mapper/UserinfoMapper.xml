@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.userinfo.dao.Userinfo.UserinfoDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Userinfo" >
+		<id column="uitID" property="uitID" jdbcType="INTEGER" />
+		<result column="uitName" property="uitName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >uitID,uitName,uitParid,uitCreateBy,uitCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Userinfo">
+		SELECT uitID,uitName,uitNumCode,uitEmail,uitMobile,uitUserrole
+		FROM corenets_userinfo AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Userinfo">
+		SELECT uitID,uitName,uitNumCode,uitEmail,uitMobile,uitUserrole
+		FROM corenets_userinfo AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Userinfo">
+		SELECT uitID,uitName,uitNumCode,uitEmail,uitMobile,uitUserrole
+		FROM corenets_userinfo AS A
+		WHERE 1=1 AND A.uitID=#{pId}
+		;
+	</select>
+
+	<select id="selectByUserName" resultType="com.nets.productorder.coreentity.entity.Userinfo">
+		SELECT uitID,uitName,uitPxd,uitNumCode,uitEmail,uitMobile,uitUserrole
+		FROM corenets_userinfo AS A
+		WHERE 1=1 AND A.uitName=#{pName}
+		;
+	</select>
+	<select id="selectByUserId" resultType="com.nets.productorder.coreentity.entity.Userinfo">
+		SELECT uitID,uitName,uitPxd,uitNumCode,uitEmail,uitMobile,uitUserrole
+		FROM corenets_userinfo AS A
+		WHERE 1=1 AND A.uitID=#{pId}
+		;
+	</select>
+
+
+
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+
+		INSERT INTO corenets_userinfo(uitNumCode,uitCreateTime,uitModifyTime
+		<if test="pPojo.uitID_isset==true">,uitID</if>
+		<if test="pPojo.uitName_isset==true">,uitName</if>
+		<if test="pPojo.uitNumCode_isset==true">,uitNumCode</if>
+		<if test="pPojo.uitUserrole_isset==true">,uitUserrole</if>
+		<if test="pPojo.uitPxd_isset==true">,uitPxd</if>
+		<if test="pPojo.uitMobile_isset==true">,uitMobile</if>
+		<if test="pPojo.uitEmail_isset==true">,uitEmail</if>
+		<if test="pPojo.uitCreateBy_isset==true">,uitCreateBy</if>
+		<if test="pPojo.uitCreateTime_isset==true">,uitCreateTime</if>
+
+		)VALUES(@tmpNumCode,now(),now()
+		<if test="pPojo.uitID_isset==true">,#{pPojo.uitID}</if>
+		<if test="pPojo.uitName_isset==true">,#{pPojo.uitName}</if>
+		<if test="pPojo.uitNumCode_isset==true">,#{pPojo.uitNumCode}</if>
+		<if test="pPojo.uitUserrole_isset==true">,#{pPojo.uitUserrole}</if>
+		<if test="pPojo.uitPxd_isset==true">,#{pPojo.uitPxd}</if>
+		<if test="pPojo.uitMobile_isset==true">,#{pPojo.uitMobile}</if>
+		<if test="pPojo.uitEmail_isset==true">,#{pPojo.uitEmail}</if>
+		<if test="pPojo.uitCreateBy_isset==true">,#{pPojo.uitCreateBy}</if>
+		<if test="pPojo.uitCreateTime_isset==true">,#{pPojo.uitCreateTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_userinfo AS A SET uitModifyTime=now()
+		<if test="pPojo.uitID_isset==true">,uitID=#{pPojo.uitID}</if>
+		<if test="pPojo.uitName_isset==true">,uitName=#{pPojo.uitName}</if>
+		<if test="pPojo.uitNumCode_isset==true">,uitNumCode=#{pPojo.uitNumCode}</if>
+		<if test="pPojo.uitUserrole_isset==true">,uitUserrole=#{pPojo.uitUserrole}</if>
+		<if test="pPojo.uitPxd_isset==true">,uitPxd=#{pPojo.uitPxd}</if>
+		<if test="pPojo.uitMobile_isset==true">,uitMobile=#{pPojo.uitMobile}</if>
+		<if test="pPojo.uitEmail_isset==true">,uitEmail=#{pPojo.uitEmail}</if>
+		<if test="pPojo.uitCreateBy_isset==true">,uitCreateBy=#{pPojo.uitCreateBy}</if>
+		<if test="pPojo.uitCreateTime_isset==true">,uitCreateTime=#{pPojo.uitCreateTime}</if>
+
+		WHERE 1=1 AND A.uitID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_userinfo SET A.uitModifyTime=now(),A.uitRecycle=1 WHERE 1=1 AND A.uitID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_userinfo WHERE 1=1 AND uitID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.userinfo.dao.Userinfo.WarehouseorderdetailDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Warehouseorderdetail" >
+		<id column="whodetID" property="whodetID" jdbcType="INTEGER" />
+		<result column="whodetName" property="whodetName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >whodetID,whodetName,whodetParid,whodetCreateBy,whodetCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Warehouseorderdetail">
+		SELECT whodetID,whodetName
+		FROM corenets_warehouseorderdetail AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Warehouseorderdetail">
+		SELECT whodetID,whodetName
+		FROM corenets_warehouseorderdetail AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Warehouseorderdetail">
+		SELECT whodetID,whodetName
+		FROM corenets_warehouseorderdetail AS A
+		WHERE 1=1 AND A.whodetID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_warehouseorderdetail(whodetNumCode,whodetCreateTime,whodetModifyTime
+		<if test="pPojo.whodetID_isset==true">,whodetID</if>
+		<if test="pPojo.whodetNumCode_isset==true">,whodetNumCode</if>
+		<if test="pPojo.whodetWarehouseorderID_isset==true">,whodetWarehouseorderID</if>
+		<if test="pPojo.whodetWarehousedetailID_isset==true">,whodetWarehousedetailID</if>
+		<if test="pPojo.whodetCount_isset==true">,whodetCount</if>
+		<if test="pPojo.whodetCreateBy_isset==true">,whodetCreateBy</if>
+		<if test="pPojo.whodetCreateTime_isset==true">,whodetCreateTime</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.whodetID_isset==true">,#{pPojo.whodetID}</if>
+		<if test="pPojo.whodetNumCode_isset==true">,#{pPojo.whodetNumCode}</if>
+		<if test="pPojo.whodetWarehouseorderID_isset==true">,#{pPojo.whodetWarehouseorderID}</if>
+		<if test="pPojo.whodetWarehousedetailID_isset==true">,#{pPojo.whodetWarehousedetailID}</if>
+		<if test="pPojo.whodetCount_isset==true">,#{pPojo.whodetCount}</if>
+		<if test="pPojo.whodetCreateBy_isset==true">,#{pPojo.whodetCreateBy}</if>
+		<if test="pPojo.whodetCreateTime_isset==true">,#{pPojo.whodetCreateTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_warehouseorderdetail AS A SET whodetModifyTime=now()
+		<if test="pPojo.whodetID_isset==true">,whodetID=#{pPojo.whodetID}</if>
+		<if test="pPojo.whodetNumCode_isset==true">,whodetNumCode=#{pPojo.whodetNumCode}</if>
+		<if test="pPojo.whodetWarehouseorderID_isset==true">,whodetWarehouseorderID=#{pPojo.whodetWarehouseorderID}</if>
+		<if test="pPojo.whodetWarehousedetailID_isset==true">,whodetWarehousedetailID=#{pPojo.whodetWarehousedetailID}</if>
+		<if test="pPojo.whodetCount_isset==true">,whodetCount=#{pPojo.whodetCount}</if>
+		<if test="pPojo.whodetCreateBy_isset==true">,whodetCreateBy=#{pPojo.whodetCreateBy}</if>
+		<if test="pPojo.whodetCreateTime_isset==true">,whodetCreateTime=#{pPojo.whodetCreateTime}</if>
+
+		WHERE 1=1 AND A.whodetID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_warehouseorderdetail SET A.whodetModifyTime=now(),A.whodetRecycle=1 WHERE 1=1 AND A.whodetID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_warehouseorderdetail WHERE 1=1 AND whodetID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+
+
+
+
+
+
+
+
+
+
+</mapper>

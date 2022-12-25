@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vendor/coreentity/coreentity.iml" filepath="$PROJECT_DIR$/vendor/coreentity/coreentity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/gateway/gateway.iml" filepath="$PROJECT_DIR$/service/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/java_lib/java_lib.iml" filepath="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/java_lib/java_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/javaweb_lib/javaweb_lib.iml" filepath="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/javaweb_lib/javaweb_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/orderinfo/orderinfo.iml" filepath="$PROJECT_DIR$/business/orderinfo/orderinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/product/product.iml" filepath="$PROJECT_DIR$/business/product/product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/productline/productline.iml" filepath="$PROJECT_DIR$/business/productline/productline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/productorder.iml" filepath="$PROJECT_DIR$/productorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/sentinel-dashboard.iml" filepath="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_component/sentinel-dashboard/sentinel-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/universal/universal.iml" filepath="$PROJECT_DIR$/../../../../../MYPROJECT/unionnets_com/webSite/java_lib/universal/universal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/userinfo/userinfo.iml" filepath="$PROJECT_DIR$/business/userinfo/userinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/warehouse/warehouse.iml" filepath="$PROJECT_DIR$/business/warehouse/warehouse.iml" />
+    </modules>
+  </component>
+</project>

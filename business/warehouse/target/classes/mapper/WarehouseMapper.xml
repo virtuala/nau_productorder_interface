@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nets.productorder.warehouse.dao.Warehouse.WarehouseDao" >
+	
+	<resultMap id="BaseResultMap" type="com.nets.productorder.coreentity.entity.Warehouse" >
+		<id column="whtID" property="whtID" jdbcType="INTEGER" />
+		<result column="whtName" property="whtName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >whtID,whtName,whtParid,whtCreateBy,whtCreateTime</sql>
+
+	<select id="findAll" resultType="com.nets.productorder.coreentity.entity.Warehouse">
+		SELECT whtID,whtName,whtNumCode
+		FROM corenets_warehouse AS A
+		;
+	</select>
+	<select id="search" resultType="com.nets.productorder.coreentity.entity.Warehouse">
+		SELECT whtID,whtName,whtNumCode
+		FROM corenets_warehouse AS A
+		;
+	</select>
+	<select id="searchone" resultType="com.nets.productorder.coreentity.entity.Warehouse">
+		SELECT whtID,whtName,whtNumCode
+		FROM corenets_warehouse AS A
+		WHERE 1=1 AND A.whtID=#{pId}
+		;
+	</select>
+
+	<select id="add" resultType="java.lang.Integer">
+
+		SET @tmpId_new=0;
+		SET @tmpNumCode=CONCAT(#{pNumCodeHead},DATE_FORMAT(NOW(),"%Y%m%d%h%i%s"),FLOOR(RAND()*100000));
+		
+		INSERT INTO corenets_warehouse(whtNumCode,whtCreateTime,whtModifyTime
+		<if test="pPojo.whtID_isset==true">,whtID</if>
+		<if test="pPojo.whtName_isset==true">,whtName</if>
+		<if test="pPojo.whtCreateBy_isset==true">,whtCreateBy</if>
+		<if test="pPojo.whtCreateTime_isset==true">,whtCreateTime</if>
+		<if test="pPojo.whtModifyBy_isset==true">,whtModifyBy</if>
+		<if test="pPojo.whtModifyTime_isset==true">,whtModifyTime</if>
+
+		)VALUE(@tmpNumCode,now(),now()
+		<if test="pPojo.whtID_isset==true">,#{pPojo.whtID}</if>
+		<if test="pPojo.whtName_isset==true">,#{pPojo.whtName}</if>
+		<if test="pPojo.whtCreateBy_isset==true">,#{pPojo.whtCreateBy}</if>
+		<if test="pPojo.whtCreateTime_isset==true">,#{pPojo.whtCreateTime}</if>
+		<if test="pPojo.whtModifyBy_isset==true">,#{pPojo.whtModifyBy}</if>
+		<if test="pPojo.whtModifyTime_isset==true">,#{pPojo.whtModifyTime}</if>
+
+		);
+
+		SELECT LAST_INSERT_ID();
+
+	</select>
+	<update id="modify">
+		UPDATE corenets_warehouse AS A SET whtModifyTime=now()
+		<if test="pPojo.whtID_isset==true">,whtID=#{pPojo.whtID}</if>
+		<if test="pPojo.whtName_isset==true">,whtName=#{pPojo.whtName}</if>
+		<if test="pPojo.whtNumCode_isset==true">,whtNumCode=#{pPojo.whtNumCode}</if>
+		<if test="pPojo.whtCreateBy_isset==true">,whtCreateBy=#{pPojo.whtCreateBy}</if>
+		<if test="pPojo.whtCreateTime_isset==true">,whtCreateTime=#{pPojo.whtCreateTime}</if>
+		<if test="pPojo.whtModifyBy_isset==true">,whtModifyBy=#{pPojo.whtModifyBy}</if>
+		<if test="pPojo.whtModifyTime_isset==true">,whtModifyTime=#{pPojo.whtModifyTime}</if>
+
+		WHERE 1=1 AND A.whtID=#{pId};
+
+	</update>
+	<update id="delete">
+		UPDATE corenets_warehouse SET A.whtModifyTime=now(),A.whtRecycle=1 WHERE 1=1 AND A.whtID=#{pId};
+	</update>
+	<delete id="deletereal">
+		DELETE FROM corenets_warehouse WHERE 1=1 AND whtID=#{pId};
+	</delete>
+
+
+
+
+
+
+
+	<!-- #CodeSection -->
+	<select id="searchByFirstId" resultType="java.util.HashMap">
+		SELECT * FROM corenets_warehouse AS A WHERE 1=1 ORDER BY A.whtID DESC LIMIT 0,1;
+	</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>

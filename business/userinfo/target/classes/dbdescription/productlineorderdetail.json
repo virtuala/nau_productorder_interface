@@ -1,0 +1,17 @@
+{
+	"TableDir":"Cms",
+	"TableName":["productlineorderdetail","productlineorderdetailcont"],
+	"ColumnHead":["plodt",""],
+	"Columns":[
+{"Index":"0","Name":"plodtID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"plodtNumCode","Comment":"生产单据明细编号","DbType":"String"}
+,{"Index":"0","Name":"plodtProductlineID","Comment":"生成线ID","DbType":"Integer"}
+,{"Index":"0","Name":"plodtOrderdetailID","Comment":"订单明细ID","DbType":"Integer"}
+,{"Index":"0","Name":"plodtCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"plodtCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"plodtModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"plodtModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}

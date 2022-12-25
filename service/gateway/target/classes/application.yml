@@ -1,0 +1,99 @@
+server:
+  port: 9080 #服务端口
+  tokenkey: auv0u0h99akdjk0 #token key
+
+spring:
+  application:
+    name: productorder-gateway
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  profiles:
+    #active: common,druid,nacos,redis,rabbitmq #加载YML配置文件
+    active: common,nacos #加载YML配置文件
+  cloud:
+    nacos:
+      discovery:
+        file-extension: yml
+        server-addr: 42.236.82.5:8848
+        namespace: 0438e24a-2cb0-4cc9-9885-ae8b404ba17b
+    gateway:
+      discovery:
+        locator:
+          enabled: true #使用服务发现路由
+      globalcors:
+        corsConfigurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: productorder-userinfo #设置路由id(理论上是可以随便写的)
+          uri: lb://productorder-userinfo #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/userinfo/** #路径匹配规则
+          filters:
+            - StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+#            - name: RequestRateLimiter #局部限流过滤器，请求数限流 名字不能随便写 ，使用默认的facatory
+#              args:
+#                key-resolver: "#{@ipKeyResolver}"# 用户身份唯一标识（与代码里的注释写法一致）
+#                redis-rate-limiter.replenishRate: 1 #每秒只允许一个请求
+#                redis-rate-limiter.burstCapacity: 3 #宽限的请求数量（即实际允许并发4个请求）
+
+        - id: productorder-product #设置路由id(理论上是可以随便写的)
+          uri: lb://productorder-product #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/product/** #路径匹配规则
+          filters:
+            - StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+
+        - id: productorder-orderinfo #设置路由id(理论上是可以随便写的)
+          uri: lb://productorder-orderinfo #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/orderinfo/** #路径匹配规则
+          filters:
+            - StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+
+        - id: productorder-warehouse #设置路由id(理论上是可以随便写的)
+          uri: lb://productorder-warehouse #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/warehouse/** #路径匹配规则
+          filters:
+            - StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+
+        - id: productorder-productline #设置路由id(理论上是可以随便写的)
+          uri: lb://productorder-productline #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/productline/** #路径匹配规则
+          filters:
+            - StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+
+        - id: SERVICE-THREE
+          uri: lb://productorder-userinfo #设置路由的url lb://nacos服务注册名称
+          predicates:
+            - Path=/three/** #路径匹配规则
+          filters:
+            #- StripPrefix=1 #将请求路径中的第一个路径去掉，一个/代表一个路径
+            - name: RequestRateLimiter #局部限流过滤器，请求数限流 名字不能随便写 ，使用默认的facatory
+              args:
+                key-resolver: "#{@ipKeyResolver}"# 用户身份唯一标识（与代码里的注释写法一致）
+                redis-rate-limiter.replenishRate: 1 #每秒只允许一个请求
+                redis-rate-limiter.burstCapacity: 3 #宽限的请求数量（即实际允许并发4个请求）
+
+
+
+
+# nacos 与 ribbon负载均衡 不能同时使用
+#myloadbalancedservice:
+#  ribbon:
+#    listOfServers: localhost:9091,localhost:9092
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+#    #NFLoadBalancerPingClassName: com.nets.productorder.gateway.config.HealthExamination
+
+
+
+
+

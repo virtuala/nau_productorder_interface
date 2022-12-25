@@ -1,0 +1,50 @@
+server:
+  port: 9086 #服务端口
+
+spring:
+  application:
+    name: productorder-product
+  profiles:
+    #active: common,druid,nacos,redis,rabbitmq #加载YML配置文件
+    active: common,druid,nacos #加载YML配置文件
+  cloud:
+    nacos:
+      discovery:
+        file-extension: yml
+        server-addr: 42.236.82.5:8848
+        namespace: 0438e24a-2cb0-4cc9-9885-ae8b404ba17b
+
+    sentinel:
+      transport:
+        dashboard: 192.168.1.3:9010
+
+
+
+
+#Mybatis
+mybatis:
+  typeAliasesPackage: com.nets.demoproject.entity
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

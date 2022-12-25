@@ -1,0 +1,17 @@
+{
+	"TableDir":"Cms",
+	"TableName":["productline","productlinecont"],
+	"ColumnHead":["plt",""],
+	"Columns":[
+{"Index":"0","Name":"pltID","Comment":"ID","DbType":"Integer"}
+,{"Index":"0","Name":"pltName","Comment":"生产线名称","DbType":"String"}
+,{"Index":"0","Name":"pltNumCode","Comment":"生产线编号","DbType":"String"}
+,{"Index":"0","Name":"pltProductivity","Comment":"生产力系数","DbType":"Float"}
+,{"Index":"0","Name":"pltCreateBy","Comment":"创建人","DbType":"Integer"}
+,{"Index":"0","Name":"pltCreateTime","Comment":"创建时间","DbType":"Integer"}
+,{"Index":"0","Name":"pltModifyBy","Comment":"修改人","DbType":"Integer"}
+,{"Index":"0","Name":"pltModifyTime","Comment":"修改时间","DbType":"Integer"}
+
+
+	]
+}
